@@ -1,0 +1,11 @@
+.app {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--bg);
+
+  transition: background-color 0.35s ease;
+}
+
+main {
+  width: 100%;
+}

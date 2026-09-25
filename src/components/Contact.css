@@ -1,0 +1,484 @@
+/* ==========================================
+   PREMIUM CONTACT
+========================================== */
+
+.contact {
+  width: 100%;
+  padding: 140px 7vw 80px;
+  background: var(--bg);
+}
+
+.contact-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   MAIN
+========================================== */
+
+.contact-main {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 110px;
+
+  margin-top: 65px;
+}
+
+/* ==========================================
+   INTRO
+========================================== */
+
+.contact-eyebrow {
+  margin-bottom: 22px;
+
+  color: var(--accent);
+
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+
+  letter-spacing: 0.18em;
+}
+
+.contact-intro h2 {
+  max-width: 650px;
+
+  font-size: clamp(52px, 6vw, 88px);
+
+  line-height: 0.9;
+
+  letter-spacing: -0.065em;
+
+  font-weight: 700;
+}
+
+.contact-intro h2 span {
+  color: var(--text-soft);
+}
+
+.contact-description {
+  max-width: 450px;
+
+  margin-top: 32px;
+
+  color: var(--text-soft);
+
+  font-size: 14px;
+
+  line-height: 1.9;
+}
+
+/* ==========================================
+   EMAIL / GITHUB
+========================================== */
+
+.contact-email {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: fit-content;
+  min-width: 310px;
+
+  gap: 35px;
+
+  margin-top: 35px;
+  padding-bottom: 10px;
+
+  border-bottom: 1px solid var(--border);
+
+  color: var(--text);
+
+  text-decoration: none;
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 11px;
+
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.contact-email span {
+  color: var(--accent);
+
+  font-size: 18px;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.contact-email:hover {
+  color: var(--accent);
+
+  border-color: var(--accent);
+}
+
+.contact-email:hover span {
+  transform:
+    translate(4px, -4px);
+}
+
+.contact-github {
+  margin-top: 18px;
+}
+
+/* ==========================================
+   FORM
+========================================== */
+
+.contact-form-wrap {
+  width: 100%;
+}
+
+.contact-form {
+  width: 100%;
+
+  border-top: 1px solid var(--border);
+}
+
+.form-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 35px;
+}
+
+.contact-form label {
+  display: flex;
+
+  flex-direction: column;
+
+  padding: 24px 0;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-form label > span {
+  margin-bottom: 14px;
+
+  color: var(--text-faint);
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 8px;
+
+  letter-spacing: 0.14em;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: var(--text);
+
+  font-family: "Manrope", sans-serif;
+
+  font-size: 14px;
+
+  resize: vertical;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: var(--text-faint);
+}
+
+.contact-form textarea {
+  min-height: 130px;
+}
+
+/* ==========================================
+   SUBMIT
+========================================== */
+
+.contact-submit {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+
+  margin-top: 28px;
+
+  padding: 20px 0;
+
+  background: transparent;
+
+  border-bottom: 1px solid var(--border);
+
+  color: var(--text);
+
+  cursor: pointer;
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 0.14em;
+
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.contact-submit b {
+  color: var(--accent);
+
+  font-size: 20px;
+
+  font-weight: 400;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.contact-submit:hover {
+  color: var(--accent);
+
+  border-color: var(--accent);
+}
+
+.contact-submit:hover b {
+  transform:
+    translate(5px, -5px);
+}
+
+/* ==========================================
+   SUCCESS
+========================================== */
+
+.contact-success {
+  min-height: 450px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  border-top: 1px solid var(--border);
+}
+
+.success-number {
+  margin-bottom: 20px;
+
+  color: var(--accent);
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 10px;
+
+  letter-spacing: 0.15em;
+}
+
+.contact-success h3 {
+  font-size: clamp(42px, 5vw, 70px);
+
+  line-height: 0.95;
+
+  letter-spacing: -0.05em;
+}
+
+.contact-success h3 span {
+  color: var(--text-soft);
+}
+
+.contact-success p {
+  max-width: 400px;
+
+  margin-top: 25px;
+
+  color: var(--text-soft);
+
+  font-size: 13px;
+
+  line-height: 1.8;
+}
+
+.contact-success button {
+  width: fit-content;
+
+  margin-top: 30px;
+
+  padding: 12px 0;
+
+  background: transparent;
+
+  border-bottom: 1px solid var(--border);
+
+  color: var(--text);
+
+  cursor: pointer;
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 0.12em;
+
+  transition:
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.contact-success button:hover {
+  color: var(--accent);
+
+  border-color: var(--accent);
+}
+
+/* ==========================================
+   BOTTOM INFO
+========================================== */
+
+.contact-bottom {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 30px;
+
+  margin-top: 100px;
+
+  padding-top: 22px;
+
+  border-top: 1px solid var(--border);
+}
+
+.contact-bottom div {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+.contact-bottom span {
+  color: var(--text-faint);
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 8px;
+
+  letter-spacing: 0.14em;
+}
+
+.contact-bottom strong {
+  color: var(--text-soft);
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 9px;
+
+  font-weight: 400;
+
+  letter-spacing: 0.08em;
+}
+
+.contact-status {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.contact-status i {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  box-shadow:
+    0 0 12px var(--accent);
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 900px) {
+  .contact {
+    padding: 110px 5vw 70px;
+  }
+
+  .contact-main {
+    grid-template-columns: 1fr;
+
+    gap: 70px;
+
+    margin-top: 55px;
+  }
+
+  .contact-intro h2 {
+    font-size: 65px;
+  }
+
+  .contact-bottom {
+    margin-top: 75px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+  .contact {
+    padding: 90px 20px 60px;
+  }
+
+  .contact-main {
+    gap: 55px;
+  }
+
+  .contact-intro h2 {
+    font-size: 48px;
+  }
+
+  .contact-description {
+    font-size: 13px;
+  }
+
+  .contact-email {
+    min-width: 0;
+
+    width: 100%;
+
+    font-size: 9px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .contact-form label {
+    padding: 20px 0;
+  }
+
+  .contact-bottom {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+
+    margin-top: 60px;
+  }
+
+  .contact-success {
+    min-height: 350px;
+  }
+}

@@ -1,0 +1,833 @@
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+  position: relative;
+
+  min-height: 100vh;
+  min-height: 100svh;
+
+  display: flex;
+  align-items: center;
+
+  padding: 150px 8vw 90px;
+
+  overflow: hidden;
+
+  background: var(--bg);
+}
+
+
+/* =========================================
+   BACKGROUND GRID
+========================================= */
+
+.hero-grid {
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      var(--border) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      var(--border) 1px,
+      transparent 1px
+    );
+
+  background-size: 90px 90px;
+
+  mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5),
+      transparent 75%
+    );
+
+  -webkit-mask-image:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.5),
+      transparent 75%
+    );
+
+  opacity: 0.18;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   STRONG BLUE BACKGROUND GLOW
+========================================= */
+
+.hero-glow {
+  position: absolute;
+
+  width: 900px;
+  height: 900px;
+
+  right: -180px;
+  top: 45%;
+
+  transform: translateY(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0, 170, 255, 0.38) 0%,
+      rgba(0, 150, 255, 0.28) 25%,
+      rgba(0, 130, 255, 0.18) 45%,
+      rgba(0, 100, 255, 0.09) 60%,
+      transparent 78%
+    );
+
+  filter: blur(80px);
+
+  opacity: 1;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   HERO CONTENT
+========================================= */
+
+.hero-content {
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+
+  max-width: 1200px;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.hero-status {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 9px 14px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 50px;
+
+  background: var(--accent-soft);
+
+  color: var(--text-soft);
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 1.8px;
+}
+
+.hero-status span {
+  width: 7px;
+  height: 7px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  box-shadow:
+    0 0 15px var(--accent);
+}
+
+
+/* =========================================
+   INTRO
+========================================= */
+
+.hero-intro {
+  margin-top: 30px;
+
+  color: var(--text-soft);
+
+  font-size: clamp(
+    18px,
+    2vw,
+    24px
+  );
+}
+
+
+/* =========================================
+   NAME
+========================================= */
+
+.hero h1 {
+  margin-top: 5px;
+
+  color: var(--text);
+
+  font-size: clamp(
+    60px,
+    10vw,
+    140px
+  );
+
+  line-height: 0.9;
+
+  letter-spacing: -6px;
+
+  font-weight: 700;
+}
+
+.hero h1 span {
+  display: block;
+
+  color: var(--accent);
+}
+
+
+/* =========================================
+   ROLE
+========================================= */
+
+.hero-role {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 35px;
+
+  color: var(--text);
+
+  font-size: clamp(
+    18px,
+    2vw,
+    24px
+  );
+}
+
+.hero-role i {
+  width: 30px;
+  height: 1px;
+
+  flex-shrink: 0;
+
+  background: var(--accent);
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.hero-description {
+  max-width: 620px;
+
+  margin-top: 22px;
+
+  color: var(--text-soft);
+
+  font-size: 15px;
+
+  line-height: 1.9;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.hero-buttons {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-top: 38px;
+}
+
+.hero-btn {
+  min-width: 160px;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  padding: 14px 20px;
+
+  border-radius: 6px;
+
+  text-decoration: none;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+
+/* =========================================
+   PRIMARY BUTTON
+========================================= */
+
+.hero-btn.primary {
+  background: var(--accent);
+
+  color: var(--bg);
+}
+
+.hero-btn.primary:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 10px 35px
+    rgba(0, 180, 255, 0.30);
+}
+
+.hero-btn.primary span {
+  font-size: 15px;
+}
+
+
+/* =========================================
+   SECONDARY BUTTON
+========================================= */
+
+.hero-btn.secondary {
+  border: 1px solid var(--border-strong);
+
+  background: rgba(8, 12, 18, 0.55);
+
+  color: var(--text);
+
+  backdrop-filter: blur(10px);
+}
+
+.hero-btn.secondary:hover {
+  transform: translateY(-3px);
+
+  border-color: var(--accent);
+
+  color: var(--accent);
+
+  box-shadow:
+    0 8px 30px
+    rgba(0, 150, 255, 0.12);
+}
+
+.hero-btn.secondary span {
+  color: var(--accent);
+
+  font-size: 16px;
+}
+
+
+/* =========================================
+   SOCIAL LINKS
+========================================= */
+
+.hero-socials {
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 24px;
+
+  margin-top: 55px;
+}
+
+.hero-socials a,
+.hero-location {
+  color: var(--text-faint);
+
+  text-decoration: none;
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 10px;
+}
+
+.hero-socials a:hover {
+  color: var(--accent);
+}
+
+.hero-location {
+  padding-left: 24px;
+
+  border-left: 1px solid var(--border);
+}
+
+
+/* =========================================
+   PROFILE CONTAINER
+========================================= */
+
+.hero-profile {
+  position: absolute;
+
+  z-index: 3;
+
+  right: 5vw;
+
+  /* PHOTO MORE UP */
+  top: 40%;
+
+  transform: translateY(-50%);
+
+  width: 480px;
+
+  height: 620px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   STRONG BLUE PHOTO GLOW
+========================================= */
+
+.hero-profile-glow {
+  position: absolute;
+
+  width: 650px;
+
+  height: 650px;
+
+  top: 0;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(85, 199, 255, 0.42) 0%,
+      rgba(35, 170, 255, 0.30) 25%,
+      rgba(0, 130, 255, 0.18) 45%,
+      rgba(0, 100, 255, 0.08) 62%,
+      transparent 78%
+    );
+
+  filter: blur(65px);
+
+  opacity: 1;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   TRANSPARENT PROFILE IMAGE
+========================================= */
+
+.hero-profile-image {
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: center;
+
+  background: transparent;
+
+  border: none;
+
+  border-radius: 0;
+
+  box-shadow: none;
+
+  overflow: visible;
+}
+
+
+/* =========================================
+   PROFILE PNG
+========================================= */
+
+.hero-profile-image img {
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  object-fit: contain;
+
+  object-position: center bottom;
+
+  background: transparent;
+
+  filter:
+    drop-shadow(
+      0 25px 35px
+      rgba(0, 0, 0, 0.28)
+    );
+
+  transition:
+    transform 0.5s ease,
+    filter 0.5s ease;
+}
+
+
+/* =========================================
+   IMAGE HOVER
+========================================= */
+
+.hero-profile-image:hover img {
+  transform:
+    translateY(-5px)
+    scale(1.015);
+
+  filter:
+    drop-shadow(
+      0 30px 45px
+      rgba(0, 0, 0, 0.32)
+    );
+}
+
+
+/* =========================================
+   SCROLL INDICATOR
+========================================= */
+
+.hero-scroll {
+  position: absolute;
+
+  right: 4vw;
+
+  bottom: 40px;
+
+  z-index: 6;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color: var(--text-faint);
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+
+  writing-mode: vertical-rl;
+}
+
+.hero-scroll i {
+  width: 1px;
+
+  height: 50px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      var(--accent),
+      transparent
+    );
+}
+
+
+/* =========================================
+   LARGE TABLET
+========================================= */
+
+@media (max-width: 1100px) {
+
+  .hero-profile {
+    right: 2vw;
+
+    width: 400px;
+
+    height: 520px;
+
+    top: 40%;
+  }
+
+  .hero-profile-glow {
+    width: 520px;
+
+    height: 520px;
+
+    top: 0;
+  }
+
+  .hero h1 {
+    font-size:
+      clamp(
+        58px,
+        8vw,
+        100px
+      );
+  }
+
+  .hero-glow {
+    width: 750px;
+
+    height: 750px;
+
+    right: -250px;
+  }
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .hero {
+    display: block;
+
+    padding:
+      130px
+      7vw
+      70px;
+  }
+
+  .hero-content {
+    max-width: 100%;
+  }
+
+  .hero-profile {
+    position: relative;
+
+    right: auto;
+
+    top: auto;
+
+    transform: none;
+
+    width: 100%;
+
+    height: 500px;
+
+    margin-top: 50px;
+  }
+
+  .hero-profile-image {
+    width: 420px;
+
+    height: 500px;
+  }
+
+  .hero-profile-glow {
+    width: 500px;
+
+    height: 500px;
+
+    top: 0;
+  }
+
+  .hero-glow {
+    width: 700px;
+
+    height: 700px;
+
+    right: 50%;
+
+    top: 65%;
+
+    transform: translate(
+      50%,
+      -50%
+    );
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+  .hero {
+    padding:
+      120px
+      6vw
+      70px;
+  }
+
+  .hero h1 {
+    font-size:
+      clamp(
+        52px,
+        14vw,
+        82px
+      );
+
+    letter-spacing: -3px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .hero-btn {
+    width: 100%;
+  }
+
+  .hero-socials {
+    gap: 15px;
+
+    margin-top: 35px;
+  }
+
+  .hero-location {
+    width: 100%;
+
+    padding-left: 0;
+
+    padding-top: 12px;
+
+    border-left: 0;
+
+    border-top: 1px solid var(--border);
+  }
+
+  .hero-profile {
+    height: 430px;
+
+    margin-top: 35px;
+  }
+
+  .hero-profile-image {
+    width: 350px;
+
+    height: 430px;
+  }
+
+  .hero-profile-glow {
+    width: 400px;
+
+    height: 400px;
+
+    top: 0;
+  }
+
+  .hero-glow {
+    width: 600px;
+
+    height: 600px;
+
+    right: 50%;
+
+    top: 65%;
+
+    transform: translate(
+      50%,
+      -50%
+    );
+  }
+}
+
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media (max-width: 400px) {
+
+  .hero {
+    padding-top: 110px;
+  }
+
+  .hero h1 {
+    font-size: 46px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+  }
+
+  .hero-profile {
+    height: 370px;
+  }
+
+  .hero-profile-image {
+    width: 300px;
+
+    height: 370px;
+  }
+
+  .hero-profile-glow {
+    width: 340px;
+
+    height: 340px;
+
+    top: 0;
+  }
+
+  .hero-glow {
+    width: 500px;
+
+    height: 500px;
+  }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-btn,
+  .hero-profile-image img {
+    transition: none;
+  }
+}

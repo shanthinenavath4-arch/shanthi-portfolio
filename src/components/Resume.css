@@ -1,0 +1,181 @@
+.resume {
+  width: 100%;
+
+  padding: 140px 8vw;
+
+  background: var(--bg-soft);
+}
+
+.resume-container {
+  width: 100%;
+  max-width: 1400px;
+
+  margin: 0 auto;
+}
+
+.resume-content {
+  padding-top: 70px;
+}
+
+.resume-heading p {
+  margin-bottom: 18px;
+
+  color: var(--accent);
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 8px;
+
+  letter-spacing: 2px;
+}
+
+.resume-heading h2 {
+  max-width: 900px;
+
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: clamp(45px, 6vw, 82px);
+
+  line-height: 0.95;
+
+  letter-spacing: -4px;
+
+  font-weight: 600;
+}
+
+.resume-heading h2 span {
+  color: var(--accent);
+}
+
+.resume-actions {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 15px;
+
+  margin-top: 70px;
+}
+
+.resume-card {
+  min-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 30px;
+
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+
+  text-decoration: none;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.resume-card:hover {
+  transform: translateY(-6px);
+
+  border-color: var(--accent);
+
+  background: var(--accent-soft);
+}
+
+.resume-card.primary {
+  border-color: rgba(85, 199, 255, 0.35);
+}
+
+.resume-card small {
+  color: var(--accent);
+
+  font-family: "DM Mono", monospace;
+
+  font-size: 7px;
+
+  letter-spacing: 1.5px;
+}
+
+.resume-card h3 {
+  margin-top: 28px;
+
+  color: var(--text);
+
+  font-size: 30px;
+
+  letter-spacing: -1px;
+
+  font-weight: 500;
+}
+
+.resume-card p {
+  max-width: 300px;
+
+  margin-top: 15px;
+
+  color: var(--text-soft);
+
+  font-size: 12px;
+
+  line-height: 1.8;
+}
+
+.resume-card > span {
+  align-self: flex-end;
+
+  color: var(--accent);
+
+  font-size: 22px;
+
+  transition: transform 0.25s ease;
+}
+
+.resume-card:hover > span {
+  transform: translate(4px, -4px);
+}
+
+@media (max-width: 900px) {
+  .resume {
+    padding: 110px 7vw;
+  }
+
+  .resume-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .resume-card {
+    min-height: 240px;
+  }
+}
+
+@media (max-width: 650px) {
+  .resume {
+    padding: 90px 6vw;
+  }
+
+  .resume-content {
+    padding-top: 50px;
+  }
+
+  .resume-heading h2 {
+    font-size: clamp(40px, 11vw, 58px);
+
+    letter-spacing: -2.5px;
+  }
+
+  .resume-actions {
+    margin-top: 45px;
+  }
+
+  .resume-card {
+    min-height: 220px;
+
+    padding: 24px;
+  }
+}
