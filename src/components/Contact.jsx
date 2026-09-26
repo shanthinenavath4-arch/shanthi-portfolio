@@ -3,10 +3,73 @@ import "./Contact.css";
 
 function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (event) => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData((previous) => ({
+      ...previous,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setSubmitted(true);
+
+    setLoading(true);
+    setError("");
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/api/contact",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          data.message || "Something went wrong."
+        );
+      }
+
+      setSubmitted(true);
+
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+
+    } catch (error) {
+      console.error("Contact form error:", error);
+
+      setError(
+        error.message ||
+        "Unable to send message. Please try again."
+      );
+
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -19,6 +82,8 @@ function Contact() {
         </div>
 
         <div className="contact-main">
+
+          {/* LEFT */}
 
           <div className="contact-intro">
 
@@ -36,31 +101,59 @@ function Contact() {
               or simply want to connect, feel free to reach out.
             </p>
 
-            <a
-              href="mailto:yourmail@gmail.com"
-              className="contact-email"
-            >
-              yourmail@gmail.com
-              <span>↗</span>
-            </a>
+            <div className="contact-details">
 
-            {/* GITHUB */}
+              <a
+                href="mailto:shanthinenavath4@gmail.com"
+                className="contact-email"
+              >
+                <small>EMAIL</small>
 
-            <a
-              href="https://github.com/Shanthishanthinenavath4-arch"
-              target="_blank"
-              rel="noreferrer"
-              className="contact-email contact-github"
-            >
-              github.com/Shanthishanthinenavath4-arch
-              <span>↗</span>
-            </a>
+                <span>
+                  shanthinenavath4@gmail.com
+                  <b>↗</b>
+                </span>
+              </a>
+
+              <a
+                href="https://github.com/shanthinenavath4-arch"
+                target="_blank"
+                rel="noreferrer"
+                className="contact-email"
+              >
+                <small>GITHUB</small>
+
+                <span>
+                  github.com/shanthinenavath4-arch
+                  <b>↗</b>
+                </span>
+              </a>
+
+              <a
+                href="https://linkedin.com/in/shanthi-nenavath"
+                target="_blank"
+                rel="noreferrer"
+                className="contact-email"
+              >
+                <small>LINKEDIN</small>
+
+                <span>
+                  linkedin.com/in/shanthi-nenavath
+                  <b>↗</b>
+                </span>
+              </a>
+
+            </div>
 
           </div>
+
+
+          {/* RIGHT */}
 
           <div className="contact-form-wrap">
 
             {submitted ? (
+
               <div className="contact-success">
 
                 <span className="success-number">
@@ -73,17 +166,22 @@ function Contact() {
                 </h3>
 
                 <p>
-                  Thanks for reaching out. I'll get back
-                  to you as soon as possible.
+                  Thanks for reaching out. Your message
+                  has been successfully saved.
                 </p>
 
                 <button
-                  onClick={() => setSubmitted(false)}
+                  type="button"
+                  onClick={() => {
+                    setSubmitted(false);
+                    setError("");
+                  }}
                 >
                   SEND ANOTHER
                 </button>
 
               </div>
+
             ) : (
 
               <form
@@ -98,6 +196,9 @@ function Contact() {
 
                     <input
                       type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       placeholder="Your name"
                       required
                     />
@@ -108,6 +209,9 @@ function Contact() {
 
                     <input
                       type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       placeholder="your@email.com"
                       required
                     />
@@ -115,32 +219,62 @@ function Contact() {
 
                 </div>
 
+
                 <label>
                   <span>03 / SUBJECT</span>
 
                   <input
                     type="text"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     placeholder="What's this about?"
                     required
                   />
                 </label>
 
+
                 <label>
                   <span>04 / MESSAGE</span>
 
                   <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     placeholder="Tell me a little about your project..."
-                    rows="5"
+                    rows="6"
                     required
                   />
                 </label>
 
+
+                {error && (
+                  <p
+                    style={{
+                      marginBottom: "15px",
+                      color: "#ff6b6b",
+                      fontSize: "12px",
+                    }}
+                  >
+                    {error}
+                  </p>
+                )}
+
+
                 <button
                   type="submit"
                   className="contact-submit"
+                  disabled={loading}
                 >
-                  <span>SEND MESSAGE</span>
-                  <b>↗</b>
+                  <span>
+                    {loading
+                      ? "SENDING..."
+                      : "SEND MESSAGE"}
+                  </span>
+
+                  <b>
+                    {loading ? "..." : "↗"}
+                  </b>
                 </button>
 
               </form>
@@ -151,16 +285,25 @@ function Contact() {
 
         </div>
 
+
+        {/* BOTTOM */}
+
         <div className="contact-bottom">
 
           <div>
             <span>BASED IN</span>
-            <strong>HYDERABAD / INDIA</strong>
+
+            <strong>
+              HYDERABAD / INDIA
+            </strong>
           </div>
 
           <div>
             <span>AVAILABLE FOR</span>
-            <strong>FULL STACK / SOFTWARE ROLES</strong>
+
+            <strong>
+              FULL STACK / SOFTWARE ROLES
+            </strong>
           </div>
 
           <div>

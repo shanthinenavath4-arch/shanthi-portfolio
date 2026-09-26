@@ -14,6 +14,7 @@ function Resume() {
         <div className="resume-main">
 
           <div className="resume-heading">
+
             <p className="resume-eyebrow">
               CAREER / PROFILE
             </p>
@@ -24,13 +25,17 @@ function Resume() {
             </h2>
 
             <p className="resume-description">
-              I'm a Full Stack Developer focused on building
-              clean, responsive and practical digital products
-              across web, mobile and backend technologies.
+              I'm a Full Stack & Mobile Application Developer
+              focused on building clean, responsive and practical
+              digital products across web, mobile and backend
+              technologies.
             </p>
+
           </div>
 
           <div className="resume-links">
+
+            {/* RESUME */}
 
             <a
               href="/resume.pdf"
@@ -40,7 +45,11 @@ function Resume() {
             >
               <div>
                 <small>01 / DOCUMENT</small>
-                <h3>View Resume</h3>
+
+                <h3>
+                  View Resume
+                </h3>
+
                 <p>
                   Education, technical skills, projects
                   and development experience.
@@ -50,33 +59,47 @@ function Resume() {
               <span>↗</span>
             </a>
 
+
+            {/* GITHUB */}
+
             <a
-              href="https://github.com/"
+              href="https://github.com/shanthinenavath4-arch"
               target="_blank"
               rel="noreferrer"
               className="resume-link"
             >
               <div>
                 <small>02 / CODE</small>
-                <h3>GitHub</h3>
+
+                <h3>
+                  GitHub
+                </h3>
+
                 <p>
-                  Explore my repositories, experiments
-                  and development work.
+                  Explore my repositories, projects,
+                  experiments and development work.
                 </p>
               </div>
 
               <span>↗</span>
             </a>
 
+
+            {/* LINKEDIN */}
+
             <a
-              href="https://www.linkedin.com/"
+              href="https://linkedin.com/in/shanthi-nenavath"
               target="_blank"
               rel="noreferrer"
               className="resume-link"
             >
               <div>
                 <small>03 / NETWORK</small>
-                <h3>LinkedIn</h3>
+
+                <h3>
+                  LinkedIn
+                </h3>
+
                 <p>
                   Connect with me and follow my
                   professional journey.
@@ -91,9 +114,19 @@ function Resume() {
         </div>
 
         <div className="resume-bottom">
-          <span>SHANTHI NENAVATH</span>
-          <span>FULL STACK DEVELOPER</span>
-          <span>HYDERABAD / INDIA</span>
+
+          <span>
+            SHANTHI NENAVATH
+          </span>
+
+          <span>
+            FULL STACK DEVELOPER
+          </span>
+
+          <span>
+            HYDERABAD / INDIA
+          </span>
+
         </div>
 
       </div>
