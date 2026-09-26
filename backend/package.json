@@ -11,12 +11,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cors": "...",
-    "dotenv": "...",
-    "express": "...",
-    "mongoose": "..."
+    "cors": "actual-version",
+    "dotenv": "actual-version",
+    "express": "actual-version",
+    "mongoose": "actual-version"
   },
   "devDependencies": {
-    "nodemon": "..."
+    "nodemon": "actual-version"
   }
 }
