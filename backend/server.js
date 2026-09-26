@@ -2,22 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
 const Contact = require("./models/Contact");
 
 dotenv.config();
 
-/* =========================
-   GMAIL TRANSPORTER
-========================= */
-
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const app = express();
 
@@ -114,29 +104,121 @@ app.post("/api/contact", async (req, res) => {
       message: cleanMessage,
     });
 
+    console.log("Contact saved to MongoDB ✅");
+
     /* =========================
-       SEND EMAIL
+       SEND EMAIL WITH RESEND
     ========================= */
 
-    await transporter.sendMail({
-      from: process.env.GMAIL_USER,
-      to: process.env.GMAIL_USER,
-      replyTo: cleanEmail,
-      subject: `Portfolio Contact: ${cleanSubject}`,
+    const { data: emailData, error: emailError } =
+      await resend.emails.send({
+        from: "Shanthi Portfolio <onboarding@resend.dev>",
+        to: ["shanthinenavath4@gmail.com"],
+        replyTo: cleanEmail,
+        subject: `Portfolio Contact: ${cleanSubject}`,
 
-      text: `
-New message from your portfolio.
+        html: `
+          <div style="
+            font-family: Arial, sans-serif;
+            max-width: 650px;
+            margin: 0 auto;
+            padding: 30px;
+            background: #f7f9fc;
+            color: #111827;
+          ">
 
-Name: ${cleanName}
-Email: ${cleanEmail}
-Subject: ${cleanSubject}
+            <div style="
+              background: #050608;
+              color: white;
+              padding: 24px;
+              border-radius: 12px 12px 0 0;
+            ">
+              <h2 style="margin: 0;">
+                New Portfolio Message
+              </h2>
 
-Message:
-${cleanMessage}
-      `,
-    });
+              <p style="
+                margin: 8px 0 0;
+                color: #55c7ff;
+              ">
+                Shanthi Nenavath
+              </p>
+            </div>
 
-    console.log("Email notification sent successfully ✅");
+            <div style="
+              background: white;
+              padding: 25px;
+              border-radius: 0 0 12px 12px;
+            ">
+
+              <p>
+                <strong>Name:</strong>
+                ${cleanName}
+              </p>
+
+              <p>
+                <strong>Email:</strong>
+                ${cleanEmail}
+              </p>
+
+              <p>
+                <strong>Subject:</strong>
+                ${cleanSubject}
+              </p>
+
+              <hr style="
+                border: none;
+                border-top: 1px solid #e5e7eb;
+                margin: 20px 0;
+              " />
+
+              <h3>Message</h3>
+
+              <p style="
+                line-height: 1.7;
+                white-space: pre-line;
+              ">
+                ${cleanMessage}
+              </p>
+
+              <hr style="
+                border: none;
+                border-top: 1px solid #e5e7eb;
+                margin: 25px 0;
+              " />
+
+              <p style="
+                color: #6b7280;
+                font-size: 12px;
+              ">
+                Sent from Shanthi Nenavath's portfolio contact form.
+              </p>
+
+            </div>
+
+          </div>
+        `,
+      });
+
+    if (emailError) {
+      console.error(
+        "Resend email error ❌:",
+        emailError
+      );
+
+      // MongoDB save succeeded even if email fails.
+      return res.status(201).json({
+        success: true,
+        message:
+          "Message received, but email notification could not be sent.",
+        data: contact,
+      });
+    }
+
+    console.log(
+      "Email notification sent successfully ✅",
+      emailData
+    );
 
     /* =========================
        SUCCESS RESPONSE
