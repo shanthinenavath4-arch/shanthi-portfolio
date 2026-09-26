@@ -2,9 +2,22 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const nodemailer = require("nodemailer");
 const Contact = require("./models/Contact");
 
 dotenv.config();
+
+/* =========================
+   GMAIL TRANSPORTER
+========================= */
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.GMAIL_USER,
+    pass: process.env.GMAIL_APP_PASSWORD,
+  },
+});
 
 const app = express();
 
@@ -16,12 +29,14 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "https://shanthi-portfolio.vercel.app",
+    origin: [
+      "http://localhost:5173",
+      "https://shanthi-portfolio.vercel.app",
+    ],
   })
 );
 
 app.use(express.json());
-
 
 /* =========================
    MONGODB CONNECTION
@@ -37,7 +52,6 @@ mongoose
     console.error(error.message);
   });
 
-
 /* =========================
    ROOT ROUTE
 ========================= */
@@ -49,7 +63,6 @@ app.get("/", (req, res) => {
   });
 });
 
-
 /* =========================
    HEALTH CHECK
 ========================= */
@@ -60,7 +73,6 @@ app.get("/api/health", (req, res) => {
     message: "Backend is healthy",
   });
 });
-
 
 /* =========================
    CONTACT FORM API
@@ -84,16 +96,51 @@ app.post("/api/contact", async (req, res) => {
       });
     }
 
-    /* CREATE CONTACT */
+    /* CLEAN DATA */
+
+    const cleanName = name.trim();
+    const cleanEmail = email.trim().toLowerCase();
+    const cleanSubject = subject.trim();
+    const cleanMessage = message.trim();
+
+    /* =========================
+       SAVE TO MONGODB
+    ========================= */
 
     const contact = await Contact.create({
-      name: name.trim(),
-      email: email.trim().toLowerCase(),
-      subject: subject.trim(),
-      message: message.trim(),
+      name: cleanName,
+      email: cleanEmail,
+      subject: cleanSubject,
+      message: cleanMessage,
     });
 
-    /* SUCCESS RESPONSE */
+    /* =========================
+       SEND EMAIL
+    ========================= */
+
+    await transporter.sendMail({
+      from: process.env.GMAIL_USER,
+      to: process.env.GMAIL_USER,
+      replyTo: cleanEmail,
+      subject: `Portfolio Contact: ${cleanSubject}`,
+
+      text: `
+New message from your portfolio.
+
+Name: ${cleanName}
+Email: ${cleanEmail}
+Subject: ${cleanSubject}
+
+Message:
+${cleanMessage}
+      `,
+    });
+
+    console.log("Email notification sent successfully ✅");
+
+    /* =========================
+       SUCCESS RESPONSE
+    ========================= */
 
     res.status(201).json({
       success: true,
@@ -114,7 +161,6 @@ app.post("/api/contact", async (req, res) => {
     });
   }
 });
-
 
 /* =========================
    START SERVER
